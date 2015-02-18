@@ -1,0 +1,22 @@
+{
+  "name": "disclose",
+  "version": "1.0.0",
+  "description": "A ZeroMQ npm publish even source.",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "npm run compile && 6to5-node test/harness.js test/*-test.js"
+  },
+  "keywords": [
+    "npm",
+    "ublish",
+    "zeromq",
+    "0mq",
+    "event",
+    "notification"
+  ],
+  "author": "Erik Toth <totherik@gmail.com>",
+  "license": "ISC"
+}
