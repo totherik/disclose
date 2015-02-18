@@ -27,6 +27,7 @@
   "license": "ISC",
   "dependencies": {
     "babel-runtime": "^4.3.0",
+    "dbrickashaw": "^5.0.2",
     "minimist": "^1.1.0",
     "promulgate": "^1.0.5",
     "zmq": "^2.10.0"

@@ -6,10 +6,14 @@ import minimist from 'minimist';
 import Promulgate from 'promulgate';
 import Eid from '../lib/eid';
 import Disclose from '../index';
+import Dbrickashaw from 'dbrickashaw';
 
 
+const log = Dbrickashaw.createLogger('disclose');
+const START = new Eid(Path.join(__dirname, '..','startkey'));
+const VISITED = new Eid(Path.join(__dirname, '..','visited'));
 
-let argv = minimist(process.argv.slice(2), {
+const argv = minimist(process.argv.slice(2), {
     alias: {
         interval: 'i',
         host:     'h',
@@ -24,18 +28,15 @@ let argv = minimist(process.argv.slice(2), {
     }
 });
 
-
-const START = new Eid(Path.join(__dirname, '..','startkey'));
-const VISITED = new Eid(Path.join(__dirname, '..','visited'));
-
-
-let socket = zmq.socket('pub');
+const socket = zmq.socket('pub');
 socket.identity = Util.format(argv.identity, process.pid);
-socket.bind(argv.address, err => {
-    if (err) {
-        throw err;
-    }
 
+socket.on('error', (err) => {
+    log.error(['socket'], err);
+});
+
+socket.on('bind', (addr) => {
+    log.info(['socket'], `Socket ${socket.identity} bound to ${addr}`);
     let startkey = START.read();
     let visited = VISITED.read();
 
@@ -44,10 +45,12 @@ socket.bind(argv.address, err => {
     stream.visited = visited ? JSON.parse(visited) : {};
 
     stream.on('error', function (err) {
-        console.error(err);
+        log.error(['publish'], err);
     });
 
     stream.on('data', function (data) {
+        log.info(['publish'], data.id);
+
         //socket.send(socket.identity, zmq.ZMQ_SNDMORE);
         socket.send(Disclose.EVENT, zmq.ZMQ_SNDMORE);
         socket.send(JSON.stringify(data));
@@ -57,3 +60,5 @@ socket.bind(argv.address, err => {
         VISITED.write(JSON.stringify(stream.visited));
     });
 });
+
+socket.bind(argv.address);
