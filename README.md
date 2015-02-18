@@ -6,8 +6,8 @@ disclose
 
 ### Basic Usage
 ```bash
-npm i -g disclose
-disclose
+$ npm i -g disclose
+$ disclose
 ```
 
 
