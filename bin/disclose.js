@@ -14,7 +14,7 @@ let argv = minimist(process.argv.slice(2), {
         interval: 'i',
         host:     'h',
         address:  'a',
-        identity: 'i'
+        identity: 'id'
     },
     default: {
         interval: undefined,

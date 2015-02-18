@@ -1,6 +1,8 @@
 
-export default class Disclose {
+const EVENT = 'publish';
 
-    static EVENT = 'publish'
+export default {
 
-}
+    EVENT
+
+};
