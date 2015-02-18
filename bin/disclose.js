@@ -1,7 +1,6 @@
 #!/usr/bin/env node
 import zmq from 'zmq';
 import Util from 'util';
-import Path from 'path';
 import minimist from 'minimist';
 import Promulgate from 'promulgate';
 import Eid from '../lib/eid';
@@ -10,8 +9,8 @@ import Dbrickashaw from 'dbrickashaw';
 
 
 const log = Dbrickashaw.createLogger('disclose');
-const START = new Eid(Path.join(__dirname, '..','startkey'));
-const VISITED = new Eid(Path.join(__dirname, '..','visited'));
+const START = new Eid('./startkey');
+const VISITED = new Eid('./visited');
 
 const argv = minimist(process.argv.slice(2), {
     alias: {
