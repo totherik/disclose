@@ -3,8 +3,11 @@
   "version": "1.0.0",
   "description": "A ZeroMQ npm publish event source.",
   "main": "dist/index.js",
-  "bin": "dist/bin/disclose.js",
+  "bin": {
+    "disclose": "dist/bin/disclose.js"
+  },
   "directories": {
+    "example": "examples",
     "test": "test"
   },
   "scripts": {
@@ -33,5 +36,13 @@
     "glob": "^4.4.0",
     "istanbul": "^0.3.5",
     "tape": "^3.5.0"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/totherik/disclose.git"
+  },
+  "bugs": {
+    "url": "https://github.com/totherik/disclose/issues"
+  },
+  "homepage": "https://github.com/totherik/disclose"
 }
