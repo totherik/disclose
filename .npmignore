@@ -22,6 +22,8 @@
 *.gz
 *.orig
 
+startkey
+visited
 work
 build
 test

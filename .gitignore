@@ -7,6 +7,8 @@
 *.gz
 *.orig
 
+startkey
+visited
 dist
 work
 build

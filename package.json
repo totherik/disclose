@@ -1,13 +1,16 @@
 {
   "name": "disclose",
   "version": "1.0.0",
-  "description": "A ZeroMQ npm publish even source.",
-  "main": "index.js",
+  "description": "A ZeroMQ npm publish event source.",
+  "main": "dist/index.js",
+  "bin": "dist/bin/disclose.js",
   "directories": {
     "test": "test"
   },
   "scripts": {
-    "test": "npm run compile && 6to5-node test/harness.js test/*-test.js"
+    "prepublish": "npm run compile",
+    "compile": "babel --optional selfContained --modules common --out-dir dist index.js lib/*.js bin/*.js",
+    "test": "npm run compile && babel-node test/harness.js test/*-test.js"
   },
   "keywords": [
     "npm",
@@ -18,5 +21,17 @@
     "notification"
   ],
   "author": "Erik Toth <totherik@gmail.com>",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "babel-runtime": "^4.3.0",
+    "minimist": "^1.1.0",
+    "promulgate": "^1.0.5",
+    "zmq": "^2.10.0"
+  },
+  "devDependencies": {
+    "babel": "^4.3.0",
+    "glob": "^4.4.0",
+    "istanbul": "^0.3.5",
+    "tape": "^3.5.0"
+  }
 }
