@@ -45,6 +45,7 @@ socket.on('bind', (addr) => {
 
     stream.on('error', function (err) {
         log.error(['publish'], err);
+        this._read(); // TROLOLOL
     });
 
     stream.on('data', function (data) {
